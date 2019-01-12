@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "target": "es2018",
+    "jsx": "react",
+    "noEmitOnError": true,
+    "sourceMap": false,
+    "baseUrl": "./",
+    "rootDir": "src",
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": [
+    "*.js",
+    "config/",
+    "dist/",
+    "node_modules/",
+  ],
+}
