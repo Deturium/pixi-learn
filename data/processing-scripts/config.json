@@ -1,0 +1,9 @@
+{
+  "graphWidth": 4800,
+  "graphHeight": 3600,
+  "forceStrength": -30,
+  "inputNodes": "../sx-mathoverflow/nodesDataRaw.json",
+  "inputLinks": "../sx-mathoverflow/linksDataRaw.json",
+  "outputNodes": "../sx-mathoverflow/nodesData.json",
+  "outputLinks": "../sx-mathoverflow/linksData.json"
+}
