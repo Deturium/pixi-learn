@@ -7,7 +7,7 @@ const data = rawData.slice(0, 20).map(a => a.slice(0, 200))
 
 const CANVAS_SIZE = {
   width: 1200,
-  height: 800,
+  height: 600,
 }
 
 const app = new PIXI.Application({
@@ -76,11 +76,15 @@ for (let i = 1; i < col; i++) {
 }
 
 const lineChart = new PIXI.Sprite(
-  app.renderer.generateTexture(lineChartContainer, PIXI.SCALE_MODES.LINEAR)
+  app.renderer.generateTexture(
+    lineChartContainer, PIXI.SCALE_MODES.LINEAR,
+    undefined, new PIXI.Rectangle(0, 0, CANVAS_SIZE.width, CANVAS_SIZE.height),
+  )
 )
-lineChart.x = CANVAS_SIZE.width / 2
-lineChart.y = CANVAS_SIZE.height / 2
-lineChart.anchor.set(0.5)
+
+lineChart.x = CANVAS_SIZE.width / col * 0.5
+// lineChart.y = CANVAS_SIZE.height / 2
+// lineChart.anchor.set(0.5)
 
 app.stage.addChild(lineChart)
 

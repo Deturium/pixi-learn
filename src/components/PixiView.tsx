@@ -15,8 +15,9 @@ const PixiView: React.FC<Props> = ({ app }) => {
 
   // TODO: remove
   const style: React.CSSProperties = {
+    fontSize: 0,
     margin: 10,
-    width: 'fit-content',
+    width: 1200,
     border: '2px solid #6cf',
   }
 

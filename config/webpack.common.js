@@ -1,6 +1,6 @@
 const path = require('path')
 const HTMLWebpackPlugin = require("html-webpack-plugin")
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 // const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = {
@@ -65,9 +65,9 @@ module.exports = {
       inject: true,
     }),
 
-    // new CopyWebpackPlugin([{
-    //   from: '',
-    //   to: '',
-    // }, ]),
+    new CopyWebpackPlugin([{
+      from: 'public/static/',
+      to: 'static/'
+    }, ]),
   ],
 }

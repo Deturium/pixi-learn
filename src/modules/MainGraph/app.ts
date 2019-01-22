@@ -1,27 +1,7 @@
 import * as PIXI from 'pixi.js'
+import EE from '@/EventEmitter'
 
-interface Node {
-  id: number
-  index: number
-  x: number
-  y: number
-  vx: number
-  vy: number
-}
-
-interface Link {
-  id: number
-  source: Node
-  target: Node
-  strength: number
-  index: number
-}
-
-interface TimeInfo {
-  timestamp: number
-  nodes: number[]
-  links: number[]
-}
+import { Node, Link, TimeInfo } from '@my/data'
 
 const linksData: Link[] = require('../../../data/college-msg/linksData.json')
 const nodesData: Node[] = require('../../../data/college-msg/nodesData.json')
@@ -35,8 +15,11 @@ const CANVAS_SIZE = {
 
 const month = 6
 const day = 24
-let startTime = new Date(2004, month - 1, day - 1)
-let endTime = new Date(2004, month - 1, day + 1)
+
+const state = {
+  startTime: new Date(2004, month - 1, day - 1),
+  endTime: new Date(2004, month - 1, day + 1)
+}
 
 const app = new PIXI.Application({
   ...CANVAS_SIZE,
@@ -55,8 +38,9 @@ function computeVisibleSet(timeStart: Date, timeEnd: Date) {
 
   timeInfoData
     .filter(term => {
-      return term.timestamp >= timeStart.valueOf()
-        && term.timestamp < timeEnd.valueOf()
+      const time = parseInt(term.timestamp)
+      return time >= timeStart.valueOf()
+        && time < timeEnd.valueOf()
     })
     .forEach(term => {
       term.nodes.forEach(node => nodesSet.add(node))
@@ -68,7 +52,7 @@ function computeVisibleSet(timeStart: Date, timeEnd: Date) {
  * 画出力图
  */
 function draw() {
-  computeVisibleSet(startTime, endTime)
+  computeVisibleSet(state.startTime, state.endTime)
 
   const NODE_RADIUS = 2
   const LINE_THICKNESS = 0.7
@@ -93,10 +77,22 @@ function draw() {
         .drawCircle(node.x, node.y, NODE_RADIUS)
         .endFill()
 
-      app.stage.addChild(circle);
+      app.stage.addChild(circle)
     })
 }
 
 draw()
+
+
+function updateTimeSelection(timeStart: Date, timeEnd: Date) {
+  state.startTime = timeStart
+  state.endTime = timeEnd
+
+  app.stage.removeChildren()
+  draw()
+}
+
+EE.on('UPDATE_TIME_SELECTION', updateTimeSelection)
+
 
 export default app
