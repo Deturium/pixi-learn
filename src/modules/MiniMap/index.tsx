@@ -19,7 +19,8 @@ const Minimap: React.FC = () => {
   const style = {
     width: 1200,
     height: 200,
-    border: '2px solid'
+    margin: 10,
+    border: '2px solid #66ccff',
   }
 
   return (

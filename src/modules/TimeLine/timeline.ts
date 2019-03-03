@@ -5,9 +5,9 @@ import { TimeInfo } from '@my/data'
 const timeInfoData: TimeInfo[] = require('../../../data/college-msg/timeInfo.json')
 
 const TIMELINE_WIDTH = 1200
-const TIMELINE_HEIGHT = 100
+const TIMELINE_HEIGHT = 90
 const TIMELINE_MARGIN = {
-  top: 20, right: 40, bottom: 20, left: 40
+  top: 20, right: 40, bottom: 10, left: 40
 }
 const TIMELINE_INNER_WIDTH = TIMELINE_WIDTH
 const TIMELINE_INNER_HEIGHT = TIMELINE_HEIGHT - TIMELINE_MARGIN.top - TIMELINE_MARGIN.bottom

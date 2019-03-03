@@ -3,7 +3,7 @@ import * as PIXI from 'pixi.js'
 type IData = number[][]
 const rawData: IData = require('@/data/email-Eu-core-temporal-week-diff.json')
 
-const data = rawData.slice(0, 20).map(a => a.slice(0, 200))
+const data = rawData.slice(0, 25).map(a => a.slice(0, 200))
 
 const CANVAS_SIZE = {
   width: 1200,
@@ -78,7 +78,7 @@ for (let i = 1; i < col; i++) {
 const lineChart = new PIXI.Sprite(
   app.renderer.generateTexture(
     lineChartContainer, PIXI.SCALE_MODES.LINEAR,
-    undefined, new PIXI.Rectangle(0, 0, CANVAS_SIZE.width, CANVAS_SIZE.height),
+    PIXI.SCALE_MODES.LINEAR, new PIXI.Rectangle(0, 0, CANVAS_SIZE.width, CANVAS_SIZE.height),
   )
 )
 
@@ -86,14 +86,13 @@ lineChart.x = CANVAS_SIZE.width / col * 0.5
 // lineChart.y = CANVAS_SIZE.height / 2
 // lineChart.anchor.set(0.5)
 
-app.stage.addChild(lineChart)
-
 // board for brush
 const board = new PIXI.Graphics()
-  .beginFill(0, 0)
+  .beginFill(0xffffff)
   .drawRect(0, 0, CANVAS_SIZE.width, CANVAS_SIZE.height)
 
 app.stage.addChild(board)
+app.stage.addChild(lineChart)
 
 board.interactive = true
 board.buttonMode = false
